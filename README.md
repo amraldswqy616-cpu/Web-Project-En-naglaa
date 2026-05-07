@@ -1,3 +1,4 @@
+
 # ⚽ Pitch Perfect | The Ultimate Football Gear Experience
 
 **Pitch Perfect** is a modern, high-performance E-commerce web application dedicated to football enthusiasts. It specializes in showcasing premium football cleats ("Stars") and legendary jerseys with a focus on immersive user experience (UX) and sleek, dark-themed aesthetics.
