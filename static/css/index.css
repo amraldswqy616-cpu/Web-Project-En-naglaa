@@ -1,0 +1,170 @@
+html {
+    scroll-behavior: smooth;
+}
+/* تنسيق الـ Header الأساسي */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* اللوجو شمال والروابط يمين */
+    align-items: center; /* توسيط العناصر رأسياً */
+    padding: 15px 5%;
+    background-color: #0b0e14;
+    color: white;
+}
+
+/* تنسيق اللوجو */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #00ff88;
+}
+
+/* تنسيق قائمة الروابط */
+.nav-links {
+    display: flex;
+    list-style: none; /* إزالة النقط من القائمة */
+    gap: 25px; /* مسافة بين الروابط */
+    
+}
+
+.nav-links a {
+    text-decoration: none; /* إزالة الخط تحت الكلام */
+    color: white;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+/* تأثير عند تمرير الماوس */
+.nav-links a:hover {
+    color: #00ff88;
+}
+
+        /* حاوية المنتجات - تجعلها بجانب بعضها بشكل مرن */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            background-color: #0b0e14;
+            /* لون خلفية غامق مثل الصورة الأولى */
+        }
+
+        /* تصميم الكارت */
+        .product-card {
+            background: #1a1e26;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #2d343f;
+        }
+
+        /* تنسيق الصورة ومنع تمططها */
+        .image-container {
+            width: 100%;
+            height: 220px;
+            background: #252a34;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-container img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            /* يحافظ على أبعاد الصورة دون تشويه */
+            transition: transform 0.3s ease;
+        }
+
+        /* --- الأنيميشن وتأثير الضغط --- */
+
+        /* تأثير عند تمرير الماوس (Hover) */
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.1);
+            background-color: #00ff88;
+        }
+
+        /* التأثير المطلوب عند الضغط (Active) */
+        .product-card:active {
+            transform: scale(0.95);
+            /* تصغير بسيط يعطي إيحاء بالضغط */
+            background-color: #00ff88;
+            /* تغيير لون الخلفية لحظياً */
+        }
+
+        .product-card:active .product-title,
+        .product-card:active .price {
+            color: #000;
+            /* تغيير لون النص ليظهر بوضوح مع اللون الأخضر */
+        }
+
+        /* تنسيقات النصوص */
+        .product-info {
+            padding: 15px;
+            color: white;
+        }
+
+        .brand {
+            color: #00ff88;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .product-title {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        a {
+            text-decoration: none
+        }
+        /* تنسيق الـ Footer الأساسي */
+.main-footer {
+    background-color: #0b0e14;
+    color: #888;
+    padding: 30px 0;
+    border-top: 1px solid #1a1e26;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* تنسيق روابط التواصل الاجتماعي */
+.social-icons {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    padding: 0;
+}
+
+.social-icons a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+/* تأثيرات الألوان الخاصة بكل منصة عند الـ Hover */
+.social-icons a.fb:hover { color: #1877f2; transform: translateY(-3px); }
+.social-icons a.li:hover { color: #0077b5; transform: translateY(-3px); }
+.social-icons a.wa:hover { color: #25d366; transform: translateY(-3px); }
+
+/* تنسيق الحقوق */
+.main-footer p {
+    font-size: 13px;
+    letter-spacing: 1px;
+}

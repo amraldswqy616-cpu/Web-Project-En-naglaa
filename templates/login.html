@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <script src="{{ url_for('static', filename='js/login.js') }}" defer></script>
+</head>
+
+<body>
+    <header class="Head">
+        <div class="logo"><img height="220 px" width="500 px" src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></div>
+    </header>
+
+<main>
+{% if request.args.get('error') == '1' %}
+    <p style="color: #ff4d4d; font-size: 14px; text-align: center; font-weight: bold; margin-bottom: 10px;">
+        Wrong Username or Password!
+    </p>
+{% endif %}
+    <form id="loginForm" action="http://127.0.0.1:5000/check_login" method="post">
+        <input id="username" name="username"  placeholder="Username" type="text" required><br><br>
+        <input id="password" name="password"  placeholder="password" type="password" required><br><br>
+        <button type="submit">Login</button>
+        <div style="text-align: center; margin-top: 15px;">
+    <span style="color: #ccc; font-size: 0.9em;">Don't have an account?</span>
+    <a href="{{ url_for('signup_page') }}" style="color: #00ffff; text-decoration: none; font-weight: bold; font-size: 0.9em;"> Sign Up</a>
+</div>
+       <p id="passError" style="color: red; display: block; margin-bottom: 10px;"></p>
+    </form>
+
+
+</main>
+
+</body>
+
+</html>

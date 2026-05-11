@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Soccer Kicks - Create Account</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body class="auth-body">
+
+    <div class="auth-container">
+        <h2 class="auth-title">Join Soccer Kicks</h2>
+{% if request.args.get('error') %}
+    <p style="color: #ff4d4d; text-align: center; font-weight: bold;">
+        {{ request.args.get('error') }}
+    </p>
+{% endif %}
+        <form action="/register" method="POST">
+    <div class="name-group" style="display: flex; gap: 10px;">
+        <input type="text" name="first_name" class="auth-input" placeholder="First Name (eg Amr)" required>
+        <input type="text" name="last_name" class="auth-input" placeholder="Last Name" required>
+    </div>
+
+    <input type="email" name="email" class="auth-input" placeholder="Email Address" required>
+
+    <input type="text" name="username" class="auth-input" placeholder="Username" required>
+    
+    <div class="password-group" style="display: flex; gap: 10px;">
+        <input type="password" name="password" class="auth-input" placeholder="Password" required>
+        <input type="password" name="reset_password" class="auth-input" placeholder="Confirm Password" required>
+    </div>
+
+    <button type="submit" class="auth-btn">Create Account</button>
+</form>
+
+        <div class="auth-footer">
+            <a href="{{ url_for('index') }}" class="back-link">← Back to Login</a>
+        </div>
+    </div>
+
+</body>
+</html>
