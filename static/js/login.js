@@ -1,25 +1,46 @@
-// function valdition (){
-// let username=document.getElementById("username").value
-// let password=document.getElementById("password").value
-// console.log("Hello "+username)
-// }
 
-const loginForm = document.getElementById("loginForm");
-const passError = document.getElementById("passError");
+// 1. استنى لما الصفحة تجهز
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // 2. امسك فورم اللوجن وزرار الخطأ
+    const loginForm = document.querySelector('form');
+    const errorSpan = document.getElementById('login_password-err');
 
-loginForm.onsubmit = function(event) {
-    let password = document.getElementById("password").value;
-    let username = document.getElementById("username").value;
+    // 3. لما المستخدم يدوس Login
+    loginForm.onsubmit = function(event) {
+        // امنع الصفحة إنها تحمل من جديد
+        event.preventDefault();
 
-    // الشرط: التأكد أن الباسوورد لا يقل عن 8 أرقام/حروف
-    if (password.length < 8 ) {
-        // 1. منع إرسال الفورم للباك إند
-        event.preventDefault(); 
-        
-        // 2. تنبيه المستخدم وتغيير النص ولونه
-        passError.textContent = "⚠️ Password must be at least 8 characters!";
-        document.getElementById("password").style.border = "2px solid red";
-        
-        console.log("Validation failed: Password too short.");
-    } 
-};
+        // امسح أي رسالة خطأ قديمة
+        errorSpan.innerText = '';
+
+        // 4. جمع البيانات (Username & Password)
+        const formData = new FormData(loginForm);
+        const data = Object.fromEntries(formData);
+
+        // 5. ابعت البيانات للسيرفر
+        fetch('/check_login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(function(response) {
+            return response.json(); // حول الرد لـ JSON
+        })
+        .then(function(result) {
+            // لو البيانات صح
+            if (result.status === "success") {
+                window.location.href = result.redirect_url; // ادخل للموقع
+            } 
+            // لو فيه غلط في اليوزر أو الباسورد
+            else {
+                errorSpan.innerText = result.message; // اظهر الرسالة تحت المربع
+            }
+        })
+        .catch(function(error) {
+            console.log("Error:", error);
+            alert("Connection error!");
+        });
+    };
+});
+

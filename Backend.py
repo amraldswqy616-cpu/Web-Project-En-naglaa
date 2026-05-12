@@ -22,9 +22,11 @@ def index():
 
 # 2. استقبال بيانات الدخول
 @app.route('/check_login', methods=['POST'])
-def login():
-    user_input = request.form.get('username', '').strip()
-    pass_input = request.form.get('password', '').strip()
+def check_login():
+    # استلام البيانات كـ JSON
+    data = request.get_json()
+    user_input = data.get('username', '').strip()
+    pass_input = data.get('password', '').strip()
 
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -32,14 +34,22 @@ def login():
     query = "SELECT * FROM Users WHERE Username = ? AND Password = ?"
     cursor.execute(query, (user_input, pass_input))
     user = cursor.fetchone()
-
     conn.close()
 
     if user:
-        # لو نجح، "وجهه" لمسار الصفحة الرئيسية الجديد
-        return redirect(url_for('home_page')) 
+        # لو نجح، بنبعت نجاح ورابط الصفحة اللي هيروح لها (مثلاً الـ Home)
+        return jsonify({
+            "status": "success", 
+            "redirect_url": url_for('home_page')
+        })
     else:
-       return redirect(url_for('index', error='Invalid username or password!'))
+        # لو فشل، بنبعت رسالة الخطأ ونحدد الـ field اللي هتظهر تحته
+        # هنا ممكن نثبتها تحت حقل الباسورد مثلاً
+        return jsonify({
+            "status": "error", 
+            "field": "login_password", 
+            "message": "Invalid username or password!"
+        }), 401
 
 @app.route('/signup')
 def signup_page():
