@@ -1,5 +1,5 @@
-from flask import Flask, request, redirect, render_template, url_for
-import pyodbc
+from flask import Flask, request, redirect, render_template, url_for,jsonify
+import pyodbc 
 
 app = Flask(__name__)
 
@@ -47,32 +47,34 @@ def signup_page():
 
 @app.route('/register', methods=['POST'])
 def register():
-    f_name = request.form.get('first_name')
-    l_name = request.form.get('last_name')
-    email = request.form.get('email')
-    uname = request.form.get('username')
-    pword = request.form.get('password')
-    pword_confirm = request.form.get('reset_password')
+    data=request.get_json()
+    f_name = data.get('first_name')
+    l_name = data.get('last_name')
+    email = data.get('email') 
+    uname = data.get('username')
+    pword = data.get('password')
+    pword_confirm = data.get('reset_password')
 
     # --- مرحلة التحقق الهندسية (Validation) ---
 
     # 1. التحقق من تطابق كلمة المرور
     if pword != pword_confirm:
-        return redirect(url_for('signup_page', error='Passwords do not match!'))
+        return jsonify({"status": "error", "field": "reset_password", "message": "Passwords do not match!"}), 400
 
     # 2. التحقق من طول كلمة المرور (8 حروف على الأقل)
     if len(pword) < 8:
-        return redirect(url_for('signup_page', error='Password must be at least 8 characters!'))
+        return jsonify({"status": "error", "field": "password", "message": "Password At least 8 characters required!"}), 400
 
     # 3. التحقق أن اسم المستخدم يبدأ بحرف وليس رقم
     if not f_name[0].isalpha():
-        return redirect(url_for('signup_page', error='First name must start with a letter!'))
-    
+        return jsonify({"status": "error", "field": "first_name", "message": "First name Must start with a letter!"}), 400    
     if not l_name[0].isalpha():
-        return redirect(url_for('signup_page', error='Last name  must start with a letter!'))
+        return jsonify({"status": "error", "field": "last_name", "message": " last name Must start with a letter!"}), 400
+    if not email[0].isalpha():
+        return jsonify({"status": "error", "field": "email", "message": "Email Must start with a letter!"}), 400   
     
     if not uname[0].isalpha():
-        return redirect(url_for('signup_page', error='Username must start with a letter!'))
+        return jsonify({"status": "error", "field": "username", "message": " User name Must start with a letter!"}), 400
 
     # --- مرحلة قاعدة البيانات ---
     try:
@@ -83,7 +85,7 @@ def register():
         cursor.execute("SELECT Username FROM Users WHERE Username = ?", (uname,))
         if cursor.fetchone():
             conn.close()
-            return redirect(url_for('signup_page', error='Username already exists!'))
+            return jsonify({"status": "error", "field": "Username_Exsiting", "message": "Username already Exist"}), 400
 
         # تنفيذ عملية الإضافة
         query = """
@@ -94,8 +96,7 @@ def register():
         conn.commit()
         conn.close()
         
-        return redirect(url_for('index', success='Account created successfully!'))
-    
+        return jsonify({"status": "success", "message": "Account created! Redirecting..."}), 200    
     except Exception as e:
        return redirect(url_for('signup_page', error='Database error occurred!'))
 
