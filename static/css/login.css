@@ -92,7 +92,7 @@ button:hover {
 .auth-input {
     width: 100%;
     padding: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     background: #222;
     border: 1px solid #333;
     color: white;
@@ -131,4 +131,24 @@ button:hover {
 
 .back-link:hover {
     color: #fff;
+}
+
+
+.error-msg{
+    color: red; font-size: 12px; margin-top: -15px; margin-bottom: 10px;
+    display: block; /* بيخلي العنصر ياخد سطر لوحده */
+    width: 100%;    /* بيضمن إنه يفرش تحت المربع */
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column; /* السحر هنا: بيخلي الـ input والـ span تحت بعض */
+    flex: 1;                /* عشان الحقلين يتقاسموا المساحة بالتساوي */
+}
+
+
+.password-group {
+    display: flex;
+    flex-direction: column; /* السحر هنا: بيخلي الـ input والـ span تحت بعض */
+    flex: 1;                /* عشان الحقلين يتقاسموا المساحة بالتساوي */
 }
