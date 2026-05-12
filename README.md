@@ -1,29 +1,26 @@
 
-# ⚽ Pitch Perfect | The Ultimate Football Gear Experience
+## 📌 Project Overview
+**Soccer Kicks** is a professional e-commerce web application specialized in sports footwear. This phase of the project focused on building a robust, secure, and user-friendly **Authentication System** using the Flask framework and SQL Server.
 
-**Pitch Perfect** is a modern, high-performance E-commerce web application dedicated to football enthusiasts. It specializes in showcasing premium football cleats ("Stars") and legendary jerseys with a focus on immersive user experience (UX) and sleek, dark-themed aesthetics.
-
----
-
-## 🚀 Project Overview
-
-This project goes beyond a simple frontend layout. It is designed to demonstrate the seamless integration between a **dynamic user interface** and a **robust backend architecture**. Whether it's the fluid animations when browsing cleats or the underlying data management, every detail is engineered for precision.
-
-### ✨ Key Features
-
-* **Premium UI/UX:** A professional dark-mode design with neon accents, optimized for high-performance visual appeal.
-* **Dynamic Product Grid:** Interactive product cards for "Stars" and "Jerseys" featuring:
-    * Hover-zoom effects for detailed viewing.
-    * Active-state animations (Scale & Color shifts) for tactile feedback.
-* **Seamless Navigation:** Smooth-scroll integration for internal sections (About, Contact) and direct social media connectivity (WhatsApp, Facebook, LinkedIn).
----
+## 🚀 Key Features
+- **Minimalist UI/UX:** A sleek, dark-themed interface designed to enhance user focus and reduce visual clutter.
+- **Advanced Data Validation:**
+  - **Username Security:** Ensures usernames start with a letter to maintain database integrity.
+  - **Password Strength:** Enforces a minimum 8-character limit for improved security.
+  - **Password Matching:** Real-time verification between 'Password' and 'Confirm Password' fields.
+- **Dynamic Database Integration:** Fully connected to **MS SQL Server** with a schema designed for scalability.
+- **Error Handling:** Comprehensive English error and success messaging to guide users through the registration and login process.
 
 ## 🛠️ Tech Stack
+- **Backend:** Python (Flask Framework)
+- **Database:** Microsoft SQL Server (pyodbc)
+- **Frontend:** HTML5, CSS3 (Modern Flexbox layouts, External Stylesheets)
+- **Environment:** Virtual Environments (venv)
 
-| Layer | Technology |
-| :--- | :--- |
-| **Frontend** | HTML5, CSS3 (Custom Grid/Flexbox), JavaScript (ES6+) |
-| **Backend** | Python (HTTP Server)
-| **Tools** | VS Code, Git/GitHub, Python-m-Server |
+## 🧠 What I Learned
+- **Separation of Concerns:** Organizing code into external CSS, clean HTML templates, and modular Python backend logic.
+- **Database Evolution:** Managing schema changes using `ALTER TABLE` commands without losing existing user data.
+- **Form Handling:** Mastering `POST` and `GET` methods, along with secure redirection and URL building in Flask.
+- **UI Consistency:** Ensuring a unified design language across multiple pages (Login, Sign-Up).
 
----
+## 📂 Project Structure
