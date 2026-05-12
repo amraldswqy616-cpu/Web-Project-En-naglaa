@@ -4,29 +4,37 @@
     <meta charset="UTF-8">
     <title>Soccer Kicks - Create Account</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
 </head>
 <body class="auth-body">
 
     <div class="auth-container">
         <h2 class="auth-title">Join Soccer Kicks</h2>
-{% if request.args.get('error') %}
-    <p style="color: #ff4d4d; text-align: center; font-weight: bold;">
-        {{ request.args.get('error') }}
-    </p>
-{% endif %}
+
         <form action="/register" method="POST">
     <div class="name-group" style="display: flex; gap: 10px;">
-        <input type="text" name="first_name" class="auth-input" placeholder="First Name (eg Amr)" required>
-        <input type="text" name="last_name" class="auth-input" placeholder="Last Name" required>
+        <div class="input-group"><input type="text" name="first_name" class="auth-input" placeholder="First Name" required>
+            <span id="first_name-err" class="error-msg" ></span></div>
+    
+        <div class="input-group"><input type="text" name="last_name" class="auth-input" placeholder="Last Name" required>
+            <span id="last_name-err" class="error-msg"></span></div>
+
     </div>
 
-    <input type="email" name="email" class="auth-input" placeholder="Email Address" required>
+    <div ><input type="email" name="email" class="auth-input" placeholder="Email Address" required>
+        <span id="email-err" class="error-msg"></span></div>
 
-    <input type="text" name="username" class="auth-input" placeholder="Username" required>
-    
+
+    <div class="input-group"><input type="text" name="username" class="auth-input" placeholder="Username" required>
+    <span id="username-err" class="error-msg" ></span>
+        <span id="Username_Exsiting-err" class="error-msg" ></span></div>
+
     <div class="password-group" style="display: flex; gap: 10px;">
         <input type="password" name="password" class="auth-input" placeholder="Password" required>
+        <span id="password-err" class="error-msg" ></span>
+ 
         <input type="password" name="reset_password" class="auth-input" placeholder="Confirm Password" required>
+        <span id="reset_password-err" class="error-msg" ></span>
     </div>
 
     <button type="submit" class="auth-btn">Create Account</button>
